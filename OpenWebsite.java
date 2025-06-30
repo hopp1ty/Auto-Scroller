@@ -28,7 +28,7 @@ public class OpenWebsite {
 
             Scroller scroller = new Scroller();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) { // edit the number (i < __ ) for the for loop to increase the amount of times it will scroll.
             scroller.scroll();
 
             try {
