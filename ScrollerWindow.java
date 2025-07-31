@@ -5,7 +5,7 @@ import java.net.URISyntaxException;
 
 public class ScrollerWindow {
     private volatile boolean stopRequested = false;
-
+    
     public void WindowCreation() {
         JFrame frame = new JFrame("Auto Scroller");
         Scroller scroller = new Scroller();
@@ -19,6 +19,7 @@ public class ScrollerWindow {
         JTextField URL = new JTextField("https://www.reddit.com");
         JLabel URLLabel = new JLabel("URL:");
         JButton URLGoButton = new JButton("Go!");
+        JButton StartStopChange = new JButton("Change Keys");
 
         startButton.setBounds(60, 100, 80, 30);
         stopButton.setBounds(160, 100, 80, 30);
@@ -27,6 +28,7 @@ public class ScrollerWindow {
         URL.setBounds(40, 20, 200, 30);
         URLLabel.setBounds(10, 20, 50, 30);
         URLGoButton.setBounds(240, 20, 60, 30);
+        //StartStopChange.setBounds(---,---,---,---) to be determined
         // SwingWorker handles background work
         SwingWorker<Void, Void> scrollerWorker = new SwingWorker<>() {
             @Override
@@ -65,6 +67,26 @@ public class ScrollerWindow {
         stopButton.addActionListener(e -> {
             stopRequested = true; // Signal the worker to stop
         });
+        StartStopChange.addActionListener(e -> {
+            JFrame KeyChange = new JFrame("Hotkey Change");
+            JLabel StartKey = new JLine("Start Key =");
+            JLabel StopKey = new JLine("Stop Key =");
+            JTextField StartKeyText = new JText("F6");
+            JTextField StopKeyText = new JText("F7");
+
+
+            frame.setLayout(null);
+            frame.setSize(320,200);
+            
+            frame.add (StartKey);
+            frame.add (StopKey);
+            frame.add (StartKeyText);
+            frame.add (StopKeyText);
+            frame.setVisible(true);
+            frame.setAlwaysOnTop(true);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        });
         URLGoButton.addActionListener(e-> {
         String url = URL.getText();
         try {
@@ -96,9 +118,11 @@ public class ScrollerWindow {
         frame.add(URL);
         frame.add(URLLabel);
         frame.add(URLGoButton);
+        frame.add(StartStopChange);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setAlwaysOnTop(true);
+        
     }
 
     public static void main(String[] args) {
